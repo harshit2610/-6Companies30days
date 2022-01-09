@@ -1,0 +1,41 @@
+
+class Solution{
+  public:
+    vector<vector<string> > Anagrams(vector<string>& s) {
+        //code here
+        vector<vector<string>> ans;
+        vector<string> a;
+        int size=s.size();
+        string temp;
+       
+       for(int i=0;i<size;i++)    //STEP-1
+        {
+            temp=s[i];
+            sort(temp.begin(),temp.end());
+            a.push_back(temp);
+        }
+        
+        
+       int ref[size]={0};    //STEP-2
+       
+       for(int i=0;i<size;i++)      //STEP-3
+        {
+            if(ref[i]==0)
+            {
+                vector<string>st;
+                st.push_back(s[i]);
+                  for(int j=i+1;j<size;j++)
+                  {
+                        if(a[i]==a[j])
+                       {
+                         st.push_back(s[j]);
+                         ref[j]=1;
+                       }
+                  } 
+                    ans.push_back(st);   // STEP-4
+                
+            }
+        }
+        return ans;
+    }
+};
